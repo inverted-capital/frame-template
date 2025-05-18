@@ -20,8 +20,6 @@ import { mockUserProfile, mockPaymentMethods, mockBillingData } from '../data/mo
 
 const AccountView: React.FC = () => {
   const [userProfile, setUserProfile] = useState(mockUserProfile);
-  const [editingName, setEditingName] = useState(false);
-  const [tempName, setTempName] = useState(userProfile.name);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [paymentMethods, setPaymentMethods] = useState(mockPaymentMethods);
   const [showAddPaymentModal, setShowAddPaymentModal] = useState(false);
