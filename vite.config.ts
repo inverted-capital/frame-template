@@ -5,11 +5,12 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    exclude: ['lucide-react'],
+    exclude: ['lucide-react', '@open-iframe-resizer/core'],
   },
   build: {
+    sourcemap: true,
     rollupOptions: {
-      external: ['lucide-react'],
+      external: ['lucide-react', '@open-iframe-resizer/core'],
     },
   },
   base: './',
