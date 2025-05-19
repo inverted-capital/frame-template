@@ -7,8 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "format:check": "prettier --check .",
     "preview": "vite preview",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "ok": "npm run typecheck && npm run format:check && npm run lint && npm run build"
   },
   "dependencies": {
     "@open-iframe-resizer/core": "^1.0.0",
