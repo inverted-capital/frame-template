@@ -5,6 +5,10 @@ function esmImportMapPlugin(): Plugin {
   const imports: Record<string, string> = {
     'lucide-react': 'https://esm.sh/lucide-react?external=react',
     '@open-iframe-resizer/core': 'https://esm.sh/@open-iframe-resizer/core',
+    react: 'https://esm.sh/react',
+    'react-dom': 'https://esm.sh/react-dom',
+    'react-dom/client': 'https://esm.sh/react-dom/client',
+    'react/jsx-runtime': 'https://esm.sh/react/jsx-runtime',
   };
 
   return {
@@ -27,15 +31,33 @@ export default defineConfig({
     alias: {
       'lucide-react': 'https://esm.sh/lucide-react?external=react',
       '@open-iframe-resizer/core': 'https://esm.sh/@open-iframe-resizer/core',
+      react: 'https://esm.sh/react',
+      'react-dom': 'https://esm.sh/react-dom',
+      'react-dom/client': 'https://esm.sh/react-dom/client',
+      'react/jsx-runtime': 'https://esm.sh/react/jsx-runtime',
     },
   },
   optimizeDeps: {
-    exclude: ['lucide-react', '@open-iframe-resizer/core'],
+    exclude: [
+      'lucide-react',
+      '@open-iframe-resizer/core',
+      'react',
+      'react-dom',
+      'react-dom/client',
+      'react/jsx-runtime',
+    ],
   },
   build: {
     sourcemap: true,
     rollupOptions: {
-      external: ['lucide-react', '@open-iframe-resizer/core'],
+      external: [
+        'lucide-react',
+        '@open-iframe-resizer/core',
+        'react',
+        'react-dom',
+        'react-dom/client',
+        'react/jsx-runtime',
+      ],
     },
   },
   base: './',
