@@ -1,46 +1,51 @@
-import React, { useState } from 'react';
-import { User, Camera, Edit, CheckCircle, X } from 'lucide-react';
+import React, { useState } from 'react'
+import { User, Camera, Edit, CheckCircle, X } from 'lucide-react'
 
 interface ProfileProps {
   userProfile: {
-    name: string;
-    email: string;
-    profilePicture: string;
-  };
-  setUserProfile: React.Dispatch<React.SetStateAction<{
-    name: string;
-    email: string;
-    profilePicture: string;
-  }>>;
+    name: string
+    email: string
+    profilePicture: string
+  }
+  setUserProfile: React.Dispatch<
+    React.SetStateAction<{
+      name: string
+      email: string
+      profilePicture: string
+    }>
+  >
 }
 
-const ProfileSection: React.FC<ProfileProps> = ({ userProfile, setUserProfile }) => {
-  const [editingName, setEditingName] = useState(false);
-  const [tempName, setTempName] = useState(userProfile.name);
+const ProfileSection: React.FC<ProfileProps> = ({
+  userProfile,
+  setUserProfile
+}) => {
+  const [editingName, setEditingName] = useState(false)
+  const [tempName, setTempName] = useState(userProfile.name)
 
   const handleProfilePictureChange = () => {
     // In a real app, this would open a file picker
-    alert('This would open a file picker to select a new profile picture');
-  };
+    alert('This would open a file picker to select a new profile picture')
+  }
 
   const startEditingName = () => {
-    setTempName(userProfile.name);
-    setEditingName(true);
-  };
+    setTempName(userProfile.name)
+    setEditingName(true)
+  }
 
   const saveName = () => {
     if (tempName.trim()) {
       setUserProfile({
         ...userProfile,
         name: tempName
-      });
+      })
     }
-    setEditingName(false);
-  };
+    setEditingName(false)
+  }
 
   const cancelNameEdit = () => {
-    setEditingName(false);
-  };
+    setEditingName(false)
+  }
 
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6 transition-all duration-300 hover:shadow-md">
@@ -120,7 +125,7 @@ const ProfileSection: React.FC<ProfileProps> = ({ userProfile, setUserProfile })
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProfileSection;
+export default ProfileSection

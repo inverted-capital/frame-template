@@ -1,14 +1,14 @@
-import React from 'react';
-import { X } from 'lucide-react';
+import React from 'react'
+import { X } from 'lucide-react'
 
 interface AddPaymentModalProps {
-  showAddPaymentModal: boolean;
-  setShowAddPaymentModal: (show: boolean) => void;
-  newPaymentType: string;
-  setNewPaymentType: (type: string) => void;
-  newPaymentValue: string;
-  setNewPaymentValue: (value: string) => void;
-  handleAddPayment: () => void;
+  showAddPaymentModal: boolean
+  setShowAddPaymentModal: (show: boolean) => void
+  newPaymentType: string
+  setNewPaymentType: (type: string) => void
+  newPaymentValue: string
+  setNewPaymentValue: (value: string) => void
+  handleAddPayment: () => void
 }
 
 const AddPaymentModal: React.FC<AddPaymentModalProps> = ({
@@ -20,7 +20,7 @@ const AddPaymentModal: React.FC<AddPaymentModalProps> = ({
   setNewPaymentValue,
   handleAddPayment
 }) => {
-  if (!showAddPaymentModal) return null;
+  if (!showAddPaymentModal) return null
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 animate-fadeIn">
@@ -53,10 +53,10 @@ const AddPaymentModal: React.FC<AddPaymentModalProps> = ({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              {newPaymentType === 'ethereum' 
-                ? 'Ethereum Address' 
-                : newPaymentType === 'wise' 
-                  ? 'Wise Email' 
+              {newPaymentType === 'ethereum'
+                ? 'Ethereum Address'
+                : newPaymentType === 'wise'
+                  ? 'Wise Email'
                   : 'Account Number'}
             </label>
             <input
@@ -64,10 +64,10 @@ const AddPaymentModal: React.FC<AddPaymentModalProps> = ({
               value={newPaymentValue}
               onChange={(e) => setNewPaymentValue(e.target.value)}
               placeholder={
-                newPaymentType === 'ethereum' 
-                  ? '0x...' 
-                  : newPaymentType === 'wise' 
-                    ? 'email@example.com' 
+                newPaymentType === 'ethereum'
+                  ? '0x...'
+                  : newPaymentType === 'wise'
+                    ? 'email@example.com'
                     : 'XXXX-XXXX-XXXX-XXXX'
               }
               className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -92,7 +92,7 @@ const AddPaymentModal: React.FC<AddPaymentModalProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AddPaymentModal;
+export default AddPaymentModal

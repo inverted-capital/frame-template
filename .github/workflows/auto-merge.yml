@@ -1,0 +1,13 @@
+name: Auto-merge
+on:
+  pull_request:
+    types: [opened, ready_for_review, synchronize, reopened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  enable:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh pr merge --merge --auto --delete-branch

@@ -26,7 +26,7 @@ function esmImportMapPlugin(): Plugin {
   }
 }
 
-// https://vitejs.dev/config/ 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), esmImportMapPlugin()],
   resolve: {
@@ -41,5 +41,5 @@ export default defineConfig({
       external: externalPackages,
     },
   },
-  base: './',
-});
+  base: './'
+})
