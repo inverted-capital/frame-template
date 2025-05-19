@@ -10,7 +10,4 @@ jobs:
   enable:
     runs-on: ubuntu-latest
     steps:
-      - uses: peter-evans/enable-pull-request-automerge@v3
-        with:
-          pull-request-number: ${{ github.event.pull_request.number }}
-          merge-method: squash
+      - run: gh pr merge --merge --auto --delete-branch
