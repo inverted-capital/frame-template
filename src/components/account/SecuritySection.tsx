@@ -1,10 +1,12 @@
-import React from 'react';
+import React from 'react'
 
 interface SecuritySectionProps {
-  showDeleteAccountConfirm: () => void;
+  showDeleteAccountConfirm: () => void
 }
 
-const SecuritySection: React.FC<SecuritySectionProps> = ({ showDeleteAccountConfirm }) => {
+const SecuritySection: React.FC<SecuritySectionProps> = ({
+  showDeleteAccountConfirm
+}) => {
   return (
     <div className="mt-6 bg-white rounded-lg border border-gray-200 p-6 transition-all duration-300 hover:shadow-md">
       <h2 className="text-lg font-medium mb-4">Account Security</h2>
@@ -20,7 +22,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ showDeleteAccountConf
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SecuritySection;
+export default SecuritySection

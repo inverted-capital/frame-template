@@ -3,7 +3,7 @@ export const mockUserProfile = {
   name: 'John Doe',
   email: 'john.doe@example.com',
   profilePicture: ''
-};
+}
 
 // Mock data for payment methods
 export const mockPaymentMethods = [
@@ -28,7 +28,7 @@ export const mockPaymentMethods = [
     value: 'XXXX-XXXX-XXXX-4321',
     isConnected: false
   }
-];
+]
 
 // Mock billing data
 export const mockBillingData = {
@@ -41,7 +41,7 @@ export const mockBillingData = {
         gained: 1.23, // GB
         lost: 0.34, // GB
         gainedCost: 0.62, // USD
-        lostRefund: 0.17, // USD
+        lostRefund: 0.17 // USD
       },
       compute: 420, // Processor units
       computeCost: 0.84,
@@ -56,7 +56,7 @@ export const mockBillingData = {
         gained: 2.45, // GB
         lost: 0.12, // GB
         gainedCost: 1.23, // USD
-        lostRefund: 0.06, // USD
+        lostRefund: 0.06 // USD
       },
       compute: 830, // Processor units
       computeCost: 1.66,
@@ -71,7 +71,7 @@ export const mockBillingData = {
         gained: 0.87, // GB
         lost: 1.45, // GB
         gainedCost: 0.44, // USD
-        lostRefund: 0.73, // USD
+        lostRefund: 0.73 // USD
       },
       compute: 640, // Processor units
       computeCost: 1.28,
@@ -81,4 +81,4 @@ export const mockBillingData = {
       aiTokensCost: 0.58
     }
   ]
-};
+}

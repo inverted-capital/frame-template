@@ -1,53 +1,53 @@
-import React from 'react';
-import { 
-  DollarSign, 
-  Plus, 
-  Calendar, 
-  HardDrive, 
-  Cpu, 
-  Wifi, 
-  PenTool, 
-  RefreshCw 
-} from 'lucide-react';
+import React from 'react'
+import {
+  DollarSign,
+  Plus,
+  Calendar,
+  HardDrive,
+  Cpu,
+  Wifi,
+  PenTool,
+  RefreshCw
+} from 'lucide-react'
 
 interface BillingPeriod {
-  start: string;
-  end: string;
+  start: string
+  end: string
 }
 
 interface StorageData {
-  gained: number;
-  lost: number;
-  gainedCost: number;
-  lostRefund: number;
+  gained: number
+  lost: number
+  gainedCost: number
+  lostRefund: number
 }
 
 interface UsageData {
-  period: string;
-  storage: StorageData;
-  compute: number;
-  computeCost: number;
-  bandwidth: number;
-  bandwidthCost: number;
-  aiTokens: number;
-  aiTokensCost: number;
+  period: string
+  storage: StorageData
+  compute: number
+  computeCost: number
+  bandwidth: number
+  bandwidthCost: number
+  aiTokens: number
+  aiTokensCost: number
 }
 
 interface BillingData {
-  balance: number;
-  currency: string;
-  usageHistory: UsageData[];
+  balance: number
+  currency: string
+  usageHistory: UsageData[]
 }
 
 interface BillingSectionProps {
-  billingData: BillingData;
-  selectedPeriod: string;
-  setSelectedPeriod: (period: string) => void;
-  setShowTopUpModal: (show: boolean) => void;
-  billingPeriod: BillingPeriod;
-  periodData: UsageData;
-  totalCost: string;
-  netStorageCost: string;
+  billingData: BillingData
+  selectedPeriod: string
+  setSelectedPeriod: (period: string) => void
+  setShowTopUpModal: (show: boolean) => void
+  billingPeriod: BillingPeriod
+  periodData: UsageData
+  totalCost: string
+  netStorageCost: string
 }
 
 const BillingSection: React.FC<BillingSectionProps> = ({
@@ -72,7 +72,7 @@ const BillingSection: React.FC<BillingSectionProps> = ({
             Pay only for resources you use
           </p>
         </div>
-        
+
         <div className="flex items-center">
           <div className="mr-4 text-right">
             <div className="text-sm text-gray-500">Current Balance</div>
@@ -80,8 +80,8 @@ const BillingSection: React.FC<BillingSectionProps> = ({
               ${billingData.balance.toFixed(2)}
             </div>
           </div>
-          
-          <button 
+
+          <button
             onClick={() => setShowTopUpModal(true)}
             className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-md flex items-center transition-colors"
           >
@@ -90,7 +90,7 @@ const BillingSection: React.FC<BillingSectionProps> = ({
           </button>
         </div>
       </div>
-      
+
       <div className="mb-6">
         <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
           <h3 className="font-medium">Usage Period</h3>
@@ -101,7 +101,7 @@ const BillingSection: React.FC<BillingSectionProps> = ({
             </div>
           </div>
         </div>
-        
+
         <div className="bg-gray-50 border border-gray-200 rounded-md p-3 flex justify-between flex-wrap gap-2">
           <button
             onClick={() => setSelectedPeriod('current')}
@@ -123,7 +123,7 @@ const BillingSection: React.FC<BillingSectionProps> = ({
           </button>
         </div>
       </div>
-      
+
       <div>
         <div className="mb-4">
           <h3 className="font-medium mb-2">Usage Summary</h3>
@@ -138,7 +138,7 @@ const BillingSection: React.FC<BillingSectionProps> = ({
                   ${netStorageCost} net
                 </span>
               </div>
-              
+
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
                   <div>
@@ -149,7 +149,7 @@ const BillingSection: React.FC<BillingSectionProps> = ({
                     ${periodData.storage.gainedCost.toFixed(2)}
                   </div>
                 </div>
-                
+
                 <div className="flex items-center justify-between text-sm">
                   <div>
                     <span className="text-red-500 mr-1">-</span>
@@ -161,7 +161,7 @@ const BillingSection: React.FC<BillingSectionProps> = ({
                 </div>
               </div>
             </div>
-            
+
             <div className="border border-gray-200 rounded-lg p-4 transition-all duration-300 hover:shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center">
@@ -172,15 +172,17 @@ const BillingSection: React.FC<BillingSectionProps> = ({
                   ${periodData.computeCost.toFixed(2)}
                 </span>
               </div>
-              
+
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
                   <div>{periodData.compute} processor units</div>
-                  <div className="text-gray-500">${periodData.computeCost.toFixed(2)}</div>
+                  <div className="text-gray-500">
+                    ${periodData.computeCost.toFixed(2)}
+                  </div>
                 </div>
               </div>
             </div>
-            
+
             <div className="border border-gray-200 rounded-lg p-4 transition-all duration-300 hover:shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center">
@@ -191,17 +193,19 @@ const BillingSection: React.FC<BillingSectionProps> = ({
                   ${periodData.bandwidthCost.toFixed(2)}
                 </span>
               </div>
-              
+
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
                   <div>{periodData.bandwidth.toFixed(2)} GB transferred</div>
-                  <div className="text-gray-500">${periodData.bandwidthCost.toFixed(2)}</div>
+                  <div className="text-gray-500">
+                    ${periodData.bandwidthCost.toFixed(2)}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        
+
         <div>
           <div className="flex items-center justify-between mb-2">
             <h3 className="font-medium">AI Token Usage</h3>
@@ -209,22 +213,26 @@ const BillingSection: React.FC<BillingSectionProps> = ({
               ${periodData.aiTokensCost.toFixed(2)}
             </span>
           </div>
-          
+
           <div className="border border-gray-200 rounded-lg p-4 flex items-center justify-between transition-all duration-300 hover:shadow-sm flex-wrap gap-2">
             <div className="flex items-center">
               <PenTool size={18} className="text-indigo-500 mr-2" />
-              <span>{periodData.aiTokens.toLocaleString()} tokens consumed</span>
+              <span>
+                {periodData.aiTokens.toLocaleString()} tokens consumed
+              </span>
             </div>
-            <div className="text-gray-500">${periodData.aiTokensCost.toFixed(2)}</div>
+            <div className="text-gray-500">
+              ${periodData.aiTokensCost.toFixed(2)}
+            </div>
           </div>
         </div>
-        
+
         <div className="mt-6 pt-4 border-t border-gray-200 flex justify-between items-center flex-wrap gap-2">
           <div>
             <span className="text-sm text-gray-500">Total for period:</span>
             <span className="ml-2 font-medium text-lg">${totalCost}</span>
           </div>
-          
+
           <div className="flex items-center text-sm text-gray-600">
             <RefreshCw size={14} className="mr-1" />
             Updated {new Date().toLocaleDateString()}
@@ -232,7 +240,7 @@ const BillingSection: React.FC<BillingSectionProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default BillingSection;
+export default BillingSection

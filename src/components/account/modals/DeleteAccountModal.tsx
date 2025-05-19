@@ -1,15 +1,15 @@
-import React from 'react';
+import React from 'react'
 
 interface DeleteAccountModalProps {
-  showDeleteConfirm: boolean;
-  dismissDeleteConfirm: () => void;
+  showDeleteConfirm: boolean
+  dismissDeleteConfirm: () => void
 }
 
 const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({
   showDeleteConfirm,
   dismissDeleteConfirm
 }) => {
-  if (!showDeleteConfirm) return null;
+  if (!showDeleteConfirm) return null
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 animate-fadeIn">
@@ -29,7 +29,7 @@ const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DeleteAccountModal;
+export default DeleteAccountModal

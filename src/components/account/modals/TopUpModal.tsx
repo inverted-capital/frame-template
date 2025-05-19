@@ -1,23 +1,23 @@
-import React from 'react';
-import { X, Plus } from 'lucide-react';
+import React from 'react'
+import { X, Plus } from 'lucide-react'
 
 interface TopUpModalProps {
-  showTopUpModal: boolean;
-  setShowTopUpModal: (show: boolean) => void;
-  topUpAmount: string;
-  setTopUpAmount: (amount: string) => void;
-  customAmount: string;
-  setCustomAmount: (amount: string) => void;
-  handleTopUp: () => void;
+  showTopUpModal: boolean
+  setShowTopUpModal: (show: boolean) => void
+  topUpAmount: string
+  setTopUpAmount: (amount: string) => void
+  customAmount: string
+  setCustomAmount: (amount: string) => void
+  handleTopUp: () => void
   billingData: {
-    balance: number;
-  };
+    balance: number
+  }
   paymentMethods: {
-    id: string;
-    name: string;
-    value: string;
-    isConnected: boolean;
-  }[];
+    id: string
+    name: string
+    value: string
+    isConnected: boolean
+  }[]
 }
 
 const TopUpModal: React.FC<TopUpModalProps> = ({
@@ -31,7 +31,7 @@ const TopUpModal: React.FC<TopUpModalProps> = ({
   billingData,
   paymentMethods
 }) => {
-  if (!showTopUpModal) return null;
+  if (!showTopUpModal) return null
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 animate-fadeIn">
@@ -45,18 +45,21 @@ const TopUpModal: React.FC<TopUpModalProps> = ({
             <X size={20} />
           </button>
         </div>
-        
+
         <div>
           <p className="mb-4 text-gray-600">
-            Current balance: <span className="font-medium text-green-600">${billingData.balance.toFixed(2)}</span>
+            Current balance:{' '}
+            <span className="font-medium text-green-600">
+              ${billingData.balance.toFixed(2)}
+            </span>
           </p>
-          
+
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Choose amount to add:
             </label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mb-3">
-              {['10', '25', '50', '100'].map(amount => (
+              {['10', '25', '50', '100'].map((amount) => (
                 <button
                   key={amount}
                   onClick={() => setTopUpAmount(amount)}
@@ -72,14 +75,16 @@ const TopUpModal: React.FC<TopUpModalProps> = ({
                 Custom
               </button>
             </div>
-            
+
             {topUpAmount === 'custom' && (
               <div>
                 <label className="block text-sm text-gray-700 mb-1">
                   Enter amount:
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+                    $
+                  </span>
                   <input
                     type="number"
                     value={customAmount}
@@ -93,15 +98,15 @@ const TopUpModal: React.FC<TopUpModalProps> = ({
               </div>
             )}
           </div>
-          
+
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Payment method:
             </label>
             <select className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
               {paymentMethods
-                .filter(method => method.isConnected)
-                .map(method => (
+                .filter((method) => method.isConnected)
+                .map((method) => (
                   <option key={method.id} value={method.id}>
                     {method.name} ({method.value.slice(0, 10)}...)
                   </option>
@@ -119,7 +124,10 @@ const TopUpModal: React.FC<TopUpModalProps> = ({
           </button>
           <button
             onClick={handleTopUp}
-            disabled={topUpAmount === 'custom' && (!customAmount.trim() || parseFloat(customAmount) <= 0)}
+            disabled={
+              topUpAmount === 'custom' &&
+              (!customAmount.trim() || parseFloat(customAmount) <= 0)
+            }
             className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 disabled:opacity-50 transition-colors flex items-center"
           >
             <Plus size={16} className="mr-2" />
@@ -128,7 +136,7 @@ const TopUpModal: React.FC<TopUpModalProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TopUpModal;
+export default TopUpModal

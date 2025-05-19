@@ -1,10 +1,8 @@
-import React from 'react';
-import AccountView from './views/AccountView';
+import React from 'react'
+import AccountView from './views/AccountView'
 
 function App() {
-  return (
-    <AccountView />
-  );
+  return <AccountView />
 }
 
-export default App;
+export default App
