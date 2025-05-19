@@ -3,12 +3,13 @@ import react from '@vitejs/plugin-react';
 
 function esmImportMapPlugin(): Plugin {
   const imports: Record<string, string> = {
-    'lucide-react': 'https://esm.sh/lucide-react',
+    'lucide-react': 'https://esm.sh/lucide-react?external=react',
     '@open-iframe-resizer/core': 'https://esm.sh/@open-iframe-resizer/core',
   };
 
   return {
     name: 'esm-import-map',
+    enforce: 'pre',
     resolveId(id) {
       const url = imports[id];
       if (url) {
@@ -22,6 +23,12 @@ function esmImportMapPlugin(): Plugin {
 // https://vitejs.dev/config/ 
 export default defineConfig({
   plugins: [react(), esmImportMapPlugin()],
+  resolve: {
+    alias: {
+      'lucide-react': 'https://esm.sh/lucide-react?external=react',
+      '@open-iframe-resizer/core': 'https://esm.sh/@open-iframe-resizer/core',
+    },
+  },
   optimizeDeps: {
     exclude: ['lucide-react', '@open-iframe-resizer/core'],
   },
