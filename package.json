@@ -11,7 +11,9 @@
     "format:check": "prettier --check .",
     "preview": "vite preview",
     "format": "prettier --write .",
-    "ok": "npm run typecheck && npm run format:check && npm run lint && npm run build"
+    "ok": "npm run typecheck && npm run format:check && npm run lint && npm run build",
+    "up": "npx -y npm-check-updates@latest -u && npm i",
+    "knip": "knip --production --fix --allow-remove-files --format --exports"
   },
   "dependencies": {
     "@open-iframe-resizer/core": "^1.0.0",
