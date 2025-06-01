@@ -4,18 +4,32 @@ import { Wallet, CreditCard, Landmark, ExternalLink, Plus } from 'lucide-react'
 import type { PaymentMethod } from '../../types/account'
 
 interface PaymentSectionProps {
-  paymentMethods: PaymentMethod[]
-  togglePaymentConnection: (id: string) => void
-  setShowAddPaymentModal: (show: boolean) => void
-  navigateToWalletNapp: () => void
+  paymentMethods?: PaymentMethod[]
+  togglePaymentConnection?: (id: string) => void
+  setShowAddPaymentModal?: (show: boolean) => void
+  navigateToWalletNapp?: () => void
+  skeleton?: boolean
 }
 
 const PaymentSection: React.FC<PaymentSectionProps> = ({
   paymentMethods,
   togglePaymentConnection,
   setShowAddPaymentModal,
-  navigateToWalletNapp
+  navigateToWalletNapp,
+  skeleton
 }) => {
+  if (skeleton) {
+    return (
+      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+        <div className="h-5 w-40 bg-gray-200 rounded mb-4" />
+        <div className="space-y-4">
+          <div className="h-10 bg-gray-200 rounded" />
+          <div className="h-10 bg-gray-200 rounded" />
+          <div className="h-10 bg-gray-200 rounded" />
+        </div>
+      </div>
+    )
+  }
   const getPaymentIcon = (type: string) => {
     switch (type) {
       case 'ethereum':
@@ -34,7 +48,7 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-medium">Payment Methods</h2>
         <button
-          onClick={() => setShowAddPaymentModal(true)}
+          onClick={() => setShowAddPaymentModal!(true)}
           className="px-3 py-1.5 bg-blue-500 text-white rounded flex items-center text-sm hover:bg-blue-600 transition-colors"
         >
           <Plus size={14} className="mr-1" />
@@ -42,7 +56,7 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({
         </button>
       </div>
 
-      {paymentMethods.length > 0 ? (
+      {paymentMethods && paymentMethods.length > 0 ? (
         <div className="space-y-4">
           {paymentMethods.map((method) => (
             <div
@@ -61,14 +75,14 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({
                 </div>
                 <div className="flex items-center space-x-2">
                   <button
-                    onClick={() => navigateToWalletNapp()}
+                    onClick={() => navigateToWalletNapp!()}
                     className="p-2 text-blue-500 hover:text-blue-700 transition-colors flex items-center"
                   >
                     <ExternalLink size={16} className="mr-1" />
                     <span className="text-sm">Open Wallet App</span>
                   </button>
                   <button
-                    onClick={() => togglePaymentConnection(method.id)}
+                    onClick={() => togglePaymentConnection!(method.id)}
                     className={`px-3 py-1.5 rounded text-sm transition-colors ${
                       method.isConnected
                         ? 'bg-red-50 text-red-600 hover:bg-red-100'

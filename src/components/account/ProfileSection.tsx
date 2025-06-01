@@ -4,16 +4,33 @@ import { User, Camera, Edit, CheckCircle, X } from 'lucide-react'
 import type { UserProfile } from '../../types/account'
 
 interface ProfileProps {
-  userProfile: UserProfile
-  setUserProfile: React.Dispatch<React.SetStateAction<UserProfile>>
+  userProfile?: UserProfile
+  setUserProfile?: React.Dispatch<React.SetStateAction<UserProfile>>
+  skeleton?: boolean
 }
 
 const ProfileSection: React.FC<ProfileProps> = ({
   userProfile,
-  setUserProfile
+  setUserProfile,
+  skeleton
 }) => {
   const [editingName, setEditingName] = useState(false)
-  const [tempName, setTempName] = useState(userProfile.name)
+  const [tempName, setTempName] = useState(userProfile?.name ?? '')
+
+  if (skeleton) {
+    return (
+      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+        <div className="h-5 w-40 bg-gray-200 rounded mb-4" />
+        <div className="flex items-center space-x-6">
+          <div className="w-24 h-24 bg-gray-200 rounded-full" />
+          <div className="flex-1 space-y-4">
+            <div className="h-4 w-3/4 bg-gray-200 rounded" />
+            <div className="h-4 w-1/2 bg-gray-200 rounded" />
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   const handleProfilePictureChange = () => {
     // In a real app, this would open a file picker
@@ -21,14 +38,14 @@ const ProfileSection: React.FC<ProfileProps> = ({
   }
 
   const startEditingName = () => {
-    setTempName(userProfile.name)
+    setTempName(userProfile!.name)
     setEditingName(true)
   }
 
   const saveName = () => {
     if (tempName.trim()) {
-      setUserProfile({
-        ...userProfile,
+      setUserProfile!({
+        ...userProfile!,
         name: tempName
       })
     }
@@ -46,9 +63,9 @@ const ProfileSection: React.FC<ProfileProps> = ({
       <div className="flex items-center space-x-6">
         <div className="relative">
           <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-gray-300">
-            {userProfile.profilePicture ? (
+            {userProfile!.profilePicture ? (
               <img
-                src={userProfile.profilePicture}
+                src={userProfile!.profilePicture}
                 alt="Profile"
                 className="w-full h-full object-cover"
               />
@@ -96,7 +113,7 @@ const ProfileSection: React.FC<ProfileProps> = ({
               </div>
             ) : (
               <div className="flex items-center">
-                <div className="text-lg font-medium">{userProfile.name}</div>
+                <div className="text-lg font-medium">{userProfile!.name}</div>
                 <button
                   onClick={startEditingName}
                   className="ml-2 p-1 text-gray-500 hover:text-gray-700 transition-colors"
@@ -112,7 +129,7 @@ const ProfileSection: React.FC<ProfileProps> = ({
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Email
             </label>
-            <div className="text-gray-600">{userProfile.email}</div>
+            <div className="text-gray-600">{userProfile!.email}</div>
           </div>
         </div>
       </div>
