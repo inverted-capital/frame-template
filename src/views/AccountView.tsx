@@ -21,7 +21,11 @@ import type {
   UsageRecord
 } from '../types/account'
 
-const AccountView: React.FC = () => {
+interface AccountViewProps {
+  skeleton?: boolean
+}
+
+const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
   const [userProfile, setUserProfile] = useState<UserProfile>({
     name: '',
     email: '',
@@ -176,6 +180,24 @@ const AccountView: React.FC = () => {
   const netStorageCost = (
     periodData.storage.gainedCost - periodData.storage.lostRefund
   ).toFixed(2)
+
+  if (skeleton) {
+    return (
+      <div className="animate-fadeIn animate-pulse">
+        <h1 className="text-2xl font-bold mb-6 flex items-center">
+          <User className="mr-2 text-gray-300" size={24} />
+          <div className="h-6 w-24 bg-gray-200 rounded" />
+        </h1>
+
+        <div className="space-y-6">
+          <ProfileSection skeleton />
+          <PaymentSection skeleton />
+          <BillingSection skeleton />
+          <SecuritySection skeleton />
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="animate-fadeIn">
