@@ -3,9 +3,17 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import mkcert from 'vite-plugin-mkcert'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare const process: any
+
+const useMkcert =
+  process.env.USE_MKCERT === 'true' || process.env.USE_MKCERT === '1'
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), mkcert()],
+  plugins: useMkcert
+    ? [react(), tailwindcss(), mkcert()]
+    : [react(), tailwindcss()],
   optimizeDeps: {
     exclude: ['lucide-react']
   },
@@ -14,6 +22,6 @@ export default defineConfig({
   },
   base: './',
   server: {
-    https: true
+    https: useMkcert
   }
 })
