@@ -27,7 +27,7 @@ interface AccountViewProps {
 }
 
 const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
-  const { data, loading } = useAccountData()
+  const { data, loading, error } = useAccountData()
   const [userProfile, setUserProfile] = useState<UserProfile>({
     name: '',
     email: '',
@@ -199,6 +199,11 @@ const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
         <User className="mr-2" size={24} />
         Account
       </h1>
+      {error && (
+        <p className="mb-4 text-red-600" role="alert">
+          {error}
+        </p>
+      )}
 
       <ProfileSection
         userProfile={userProfile}

@@ -1,40 +1,60 @@
-export interface UserProfile {
-  name: string
-  email: string
-  profilePicture: string
-}
+import { z } from 'zod'
 
-export interface PaymentMethod {
-  id: string
-  type: string
-  name: string
-  value: string
-  isConnected: boolean
-}
+export const userProfileSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  profilePicture: z.string(),
+})
 
-export interface StorageUsage {
-  gained: number
-  lost: number
-  gainedCost: number
-  lostRefund: number
-}
+export type UserProfile = z.infer<typeof userProfileSchema>
 
-export interface UsageRecord {
-  period: string
-  storage: StorageUsage
-  compute: number
-  computeCost: number
-  bandwidth: number
-  bandwidthCost: number
-  aiTokens: number
-  aiTokensCost: number
-}
+export const paymentMethodSchema = z.object({
+  id: z.string(),
+  type: z.string(),
+  name: z.string(),
+  value: z.string(),
+  isConnected: z.boolean(),
+})
 
-export interface BillingData {
-  balance: number
-  currency: string
-  usageHistory: UsageRecord[]
-}
+export type PaymentMethod = z.infer<typeof paymentMethodSchema>
+
+export const storageUsageSchema = z.object({
+  gained: z.number(),
+  lost: z.number(),
+  gainedCost: z.number(),
+  lostRefund: z.number(),
+})
+
+export type StorageUsage = z.infer<typeof storageUsageSchema>
+
+export const usageRecordSchema = z.object({
+  period: z.string(),
+  storage: storageUsageSchema,
+  compute: z.number(),
+  computeCost: z.number(),
+  bandwidth: z.number(),
+  bandwidthCost: z.number(),
+  aiTokens: z.number(),
+  aiTokensCost: z.number(),
+})
+
+export type UsageRecord = z.infer<typeof usageRecordSchema>
+
+export const billingDataSchema = z.object({
+  balance: z.number(),
+  currency: z.string(),
+  usageHistory: z.array(usageRecordSchema),
+})
+
+export type BillingData = z.infer<typeof billingDataSchema>
+
+export const accountDataSchema = z.object({
+  user: userProfileSchema,
+  paymentMethods: z.array(paymentMethodSchema),
+  billing: billingDataSchema,
+})
+
+export type AccountData = z.infer<typeof accountDataSchema>
 
 // Example account object shape
 // const AccountData: {
