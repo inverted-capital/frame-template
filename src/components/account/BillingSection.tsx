@@ -10,33 +10,11 @@ import {
   RefreshCw
 } from 'lucide-react'
 
+import type { BillingData, UsageRecord } from '../../types/account'
+
 interface BillingPeriod {
   start: string
   end: string
-}
-
-interface StorageData {
-  gained: number
-  lost: number
-  gainedCost: number
-  lostRefund: number
-}
-
-interface UsageData {
-  period: string
-  storage: StorageData
-  compute: number
-  computeCost: number
-  bandwidth: number
-  bandwidthCost: number
-  aiTokens: number
-  aiTokensCost: number
-}
-
-interface BillingData {
-  balance: number
-  currency: string
-  usageHistory: UsageData[]
 }
 
 interface BillingSectionProps {
@@ -45,7 +23,7 @@ interface BillingSectionProps {
   setSelectedPeriod: (period: string) => void
   setShowTopUpModal: (show: boolean) => void
   billingPeriod: BillingPeriod
-  periodData: UsageData
+  periodData: UsageRecord
   totalCost: string
   netStorageCost: string
 }
