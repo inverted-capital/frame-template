@@ -1,34 +1,18 @@
-import { useEffect, useState } from 'react'
-import type { BillingData, PaymentMethod, UserProfile } from '../types/account'
-
-export interface AccountData {
-  user: UserProfile
-  paymentMethods: PaymentMethod[]
-  billing: BillingData
-}
+import { useExists, useTypedFile } from '@artifact/client/hooks'
+import { accountDataSchema } from '../types/account'
+import { useMemo } from 'react'
 
 const useAccountData = () => {
-  const [data, setData] = useState<AccountData | null>(null)
-  const [loading, setLoading] = useState(true)
+  const exists = useExists('profile.json')
+  const data = useTypedFile('profile.json', accountDataSchema)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/account')
-        if (!response.ok) throw new Error('Failed to fetch account data')
-        const json = (await response.json()) as AccountData
-        setData(json)
-      } catch (err) {
-        console.error(err)
-      } finally {
-        setLoading(false)
-      }
-    }
+  const loading = useMemo(
+    () => exists === null || (exists && data === undefined),
+    [exists, data]
+  )
+  const error = exists === false ? 'profile.json not found' : null
 
-    fetchData()
-  }, [])
-
-  return { data, loading }
+  return { data, loading, error }
 }
 
 export default useAccountData
