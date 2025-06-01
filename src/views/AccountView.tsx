@@ -10,7 +10,6 @@ import {
 import DeleteAccountModal from '../components/account/modals/DeleteAccountModal'
 import AddPaymentModal from '../components/account/modals/AddPaymentModal'
 import TopUpModal from '../components/account/modals/TopUpModal'
-import AccountViewSkeleton from './AccountViewSkeleton'
 import useAccountData from '../hooks/useAccountData'
 
 // Icons
@@ -192,9 +191,7 @@ const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
     periodData.storage.gainedCost - periodData.storage.lostRefund
   ).toFixed(2)
 
-  if (loading || skeleton) {
-    return <AccountViewSkeleton />
-  }
+  const isSkeleton = loading || skeleton
 
   return (
     <div className="animate-fadeIn">
@@ -206,6 +203,7 @@ const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
       <ProfileSection
         userProfile={userProfile}
         setUserProfile={setUserProfile}
+        skeleton={isSkeleton}
       />
 
       <PaymentSection
@@ -213,6 +211,7 @@ const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
         togglePaymentConnection={togglePaymentConnection}
         setShowAddPaymentModal={setShowAddPaymentModal}
         navigateToWalletNapp={navigateToWalletNapp}
+        skeleton={isSkeleton}
       />
 
       <BillingSection
@@ -224,37 +223,45 @@ const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
         periodData={periodData}
         totalCost={totalCost}
         netStorageCost={netStorageCost}
+        skeleton={isSkeleton}
       />
 
-      <SecuritySection showDeleteAccountConfirm={showDeleteAccountConfirm} />
-
-      {/* Modals */}
-      <DeleteAccountModal
-        showDeleteConfirm={showDeleteConfirm}
-        dismissDeleteConfirm={dismissDeleteConfirm}
+      <SecuritySection
+        showDeleteAccountConfirm={showDeleteAccountConfirm}
+        skeleton={isSkeleton}
       />
 
-      <AddPaymentModal
-        showAddPaymentModal={showAddPaymentModal}
-        setShowAddPaymentModal={setShowAddPaymentModal}
-        newPaymentType={newPaymentType}
-        setNewPaymentType={setNewPaymentType}
-        newPaymentValue={newPaymentValue}
-        setNewPaymentValue={setNewPaymentValue}
-        handleAddPayment={handleAddPayment}
-      />
+      {!isSkeleton && (
+        <>
+          {/* Modals */}
+          <DeleteAccountModal
+            showDeleteConfirm={showDeleteConfirm}
+            dismissDeleteConfirm={dismissDeleteConfirm}
+          />
 
-      <TopUpModal
-        showTopUpModal={showTopUpModal}
-        setShowTopUpModal={setShowTopUpModal}
-        topUpAmount={topUpAmount}
-        setTopUpAmount={setTopUpAmount}
-        customAmount={customAmount}
-        setCustomAmount={setCustomAmount}
-        handleTopUp={handleTopUp}
-        billingData={billingData}
-        paymentMethods={paymentMethods}
-      />
+          <AddPaymentModal
+            showAddPaymentModal={showAddPaymentModal}
+            setShowAddPaymentModal={setShowAddPaymentModal}
+            newPaymentType={newPaymentType}
+            setNewPaymentType={setNewPaymentType}
+            newPaymentValue={newPaymentValue}
+            setNewPaymentValue={setNewPaymentValue}
+            handleAddPayment={handleAddPayment}
+          />
+
+          <TopUpModal
+            showTopUpModal={showTopUpModal}
+            setShowTopUpModal={setShowTopUpModal}
+            topUpAmount={topUpAmount}
+            setTopUpAmount={setTopUpAmount}
+            customAmount={customAmount}
+            setCustomAmount={setCustomAmount}
+            handleTopUp={handleTopUp}
+            billingData={billingData}
+            paymentMethods={paymentMethods}
+          />
+        </>
+      )}
     </div>
   )
 }
