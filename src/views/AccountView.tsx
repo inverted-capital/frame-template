@@ -1,7 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigationStore } from '../features/navigation/state'
-import { useChatStore } from '../features/chat/state'
-import { useRepoStore } from '../features/repos/state'
 
 // Components
 import ProfileSection from '../components/account/ProfileSection'
@@ -36,10 +33,6 @@ const AccountView: React.FC = () => {
   const [showTopUpModal, setShowTopUpModal] = useState(false)
   const [topUpAmount, setTopUpAmount] = useState('10')
   const [customAmount, setCustomAmount] = useState('')
-
-  const setCurrentView = useNavigationStore((state) => state.setCurrentView)
-  const navigateTo = useChatStore((state) => state.navigateTo)
-  const { selectHomeRepository } = useRepoStore()
 
   const showDeleteAccountConfirm = () => {
     setShowDeleteConfirm(true)
@@ -82,17 +75,15 @@ const AccountView: React.FC = () => {
 
   const navigateToWalletNapp = () => {
     // Select home repository
-    selectHomeRepository()
-
+    // selectHomeRepository()
     // Navigate to the napps view
-    setCurrentView('napps')
-
-    // Create a navigation marker
-    navigateTo({
-      title: 'Wallet Manager',
-      icon: 'Package',
-      view: 'napps'
-    })
+    // setCurrentView('napps')
+    // // Create a navigation marker
+    // navigateTo({
+    //   title: 'Wallet Manager',
+    //   icon: 'Package',
+    //   view: 'napps'
+    // })
   }
 
   const handleTopUp = () => {
