@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 
 // Components
-import ProfileSection from '../components/account/ProfileSection'
-import PaymentSection from '../components/account/PaymentSection'
-import BillingSection from '../components/account/BillingSection'
-import SecuritySection from '../components/account/SecuritySection'
+import {
+  ProfileSection,
+  PaymentSection,
+  BillingSection,
+  SecuritySection
+} from '../components/account'
 import DeleteAccountModal from '../components/account/modals/DeleteAccountModal'
 import AddPaymentModal from '../components/account/modals/AddPaymentModal'
 import TopUpModal from '../components/account/modals/TopUpModal'
