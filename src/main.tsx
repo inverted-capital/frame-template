@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { ArtifactFrame } from '@artifact/client/react'
+import { ArtifactFrame, ArtifactSyncer } from '@artifact/client/react'
 import App from './App.tsx'
 import type { AccountData } from './types/account'
 import './index.css'
@@ -33,7 +33,9 @@ createRoot(document.getElementById('root')!).render(
       placeholder={<App skeleton />}
       {...(import.meta.env.DEV ? { mockFiles: { 'profile.json': mockProfile } } : {})}
     >
-      <App />
+      <ArtifactSyncer>
+        <App />
+      </ArtifactSyncer>
     </ArtifactFrame>
   </StrictMode>
 )
