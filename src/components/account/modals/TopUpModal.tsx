@@ -1,6 +1,8 @@
 import React from 'react'
 import { X, Plus } from 'lucide-react'
 
+import type { BillingData, PaymentMethod } from '../../../types/account'
+
 interface TopUpModalProps {
   showTopUpModal: boolean
   setShowTopUpModal: (show: boolean) => void
@@ -9,15 +11,8 @@ interface TopUpModalProps {
   customAmount: string
   setCustomAmount: (amount: string) => void
   handleTopUp: () => void
-  billingData: {
-    balance: number
-  }
-  paymentMethods: {
-    id: string
-    name: string
-    value: string
-    isConnected: boolean
-  }[]
+  billingData: BillingData
+  paymentMethods: PaymentMethod[]
 }
 
 const TopUpModal: React.FC<TopUpModalProps> = ({

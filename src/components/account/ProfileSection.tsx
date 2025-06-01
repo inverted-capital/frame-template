@@ -1,19 +1,11 @@
 import React, { useState } from 'react'
 import { User, Camera, Edit, CheckCircle, X } from 'lucide-react'
 
+import type { UserProfile } from '../../types/account'
+
 interface ProfileProps {
-  userProfile: {
-    name: string
-    email: string
-    profilePicture: string
-  }
-  setUserProfile: React.Dispatch<
-    React.SetStateAction<{
-      name: string
-      email: string
-      profilePicture: string
-    }>
-  >
+  userProfile: UserProfile
+  setUserProfile: React.Dispatch<React.SetStateAction<UserProfile>>
 }
 
 const ProfileSection: React.FC<ProfileProps> = ({

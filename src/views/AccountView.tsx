@@ -12,23 +12,41 @@ import TopUpModal from '../components/account/modals/TopUpModal'
 // Icons
 import { User } from 'lucide-react'
 
-// Mock data
-import {
-  mockUserProfile,
-  mockPaymentMethods,
-  mockBillingData
-} from '../data/mockData'
+import type {
+  UserProfile,
+  PaymentMethod,
+  BillingData,
+  UsageRecord
+} from '../types/account'
 
 const AccountView: React.FC = () => {
-  const [userProfile, setUserProfile] = useState(mockUserProfile)
+  const [userProfile, setUserProfile] = useState<UserProfile>({
+    name: '',
+    email: '',
+    profilePicture: ''
+  })
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
-  const [paymentMethods, setPaymentMethods] = useState(mockPaymentMethods)
+  const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([])
   const [showAddPaymentModal, setShowAddPaymentModal] = useState(false)
   const [newPaymentType, setNewPaymentType] = useState('ethereum')
   const [newPaymentValue, setNewPaymentValue] = useState('')
 
   // Billing related state
-  const [billingData, setBillingData] = useState(mockBillingData)
+  const emptyUsage: UsageRecord = {
+    period: '',
+    storage: { gained: 0, lost: 0, gainedCost: 0, lostRefund: 0 },
+    compute: 0,
+    computeCost: 0,
+    bandwidth: 0,
+    bandwidthCost: 0,
+    aiTokens: 0,
+    aiTokensCost: 0
+  }
+  const [billingData, setBillingData] = useState<BillingData>({
+    balance: 0,
+    currency: 'USD',
+    usageHistory: [emptyUsage]
+  })
   const [selectedPeriod, setSelectedPeriod] = useState('current')
   const [showTopUpModal, setShowTopUpModal] = useState(false)
   const [topUpAmount, setTopUpAmount] = useState('10')
