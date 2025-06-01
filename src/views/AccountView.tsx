@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // Components
 import {
@@ -10,6 +10,8 @@ import {
 import DeleteAccountModal from '../components/account/modals/DeleteAccountModal'
 import AddPaymentModal from '../components/account/modals/AddPaymentModal'
 import TopUpModal from '../components/account/modals/TopUpModal'
+import AccountViewSkeleton from './AccountViewSkeleton'
+import useAccountData from '../hooks/useAccountData'
 
 // Icons
 import { User } from 'lucide-react'
@@ -26,6 +28,7 @@ interface AccountViewProps {
 }
 
 const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
+  const { data, loading } = useAccountData()
   const [userProfile, setUserProfile] = useState<UserProfile>({
     name: '',
     email: '',
@@ -57,6 +60,14 @@ const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
   const [showTopUpModal, setShowTopUpModal] = useState(false)
   const [topUpAmount, setTopUpAmount] = useState('10')
   const [customAmount, setCustomAmount] = useState('')
+
+  useEffect(() => {
+    if (data) {
+      setUserProfile(data.user)
+      setPaymentMethods(data.paymentMethods)
+      setBillingData(data.billing)
+    }
+  }, [data])
 
   const showDeleteAccountConfirm = () => {
     setShowDeleteConfirm(true)
@@ -181,22 +192,8 @@ const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
     periodData.storage.gainedCost - periodData.storage.lostRefund
   ).toFixed(2)
 
-  if (skeleton) {
-    return (
-      <div className="animate-fadeIn animate-pulse">
-        <h1 className="text-2xl font-bold mb-6 flex items-center">
-          <User className="mr-2 text-gray-300" size={24} />
-          <div className="h-6 w-24 bg-gray-200 rounded" />
-        </h1>
-
-        <div className="space-y-6">
-          <ProfileSection skeleton />
-          <PaymentSection skeleton />
-          <BillingSection skeleton />
-          <SecuritySection skeleton />
-        </div>
-      </div>
-    )
+  if (loading || skeleton) {
+    return <AccountViewSkeleton />
   }
 
   return (
