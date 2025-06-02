@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const userProfileSchema = z.object({
+const userProfileSchema = z.object({
   name: z.string(),
   email: z.string().email(),
   profilePicture: z.string()
@@ -8,7 +8,7 @@ export const userProfileSchema = z.object({
 
 export type UserProfile = z.infer<typeof userProfileSchema>
 
-export const paymentMethodSchema = z.object({
+const paymentMethodSchema = z.object({
   id: z.string(),
   type: z.string(),
   name: z.string(),
@@ -18,16 +18,16 @@ export const paymentMethodSchema = z.object({
 
 export type PaymentMethod = z.infer<typeof paymentMethodSchema>
 
-export const storageUsageSchema = z.object({
+const storageUsageSchema = z.object({
   gained: z.number(),
   lost: z.number(),
   gainedCost: z.number(),
   lostRefund: z.number()
 })
 
-export type StorageUsage = z.infer<typeof storageUsageSchema>
+type StorageUsage = z.infer<typeof storageUsageSchema>
 
-export const usageRecordSchema = z.object({
+const usageRecordSchema = z.object({
   period: z.string(),
   storage: storageUsageSchema,
   compute: z.number(),
@@ -40,7 +40,7 @@ export const usageRecordSchema = z.object({
 
 export type UsageRecord = z.infer<typeof usageRecordSchema>
 
-export const billingDataSchema = z.object({
+const billingDataSchema = z.object({
   balance: z.number(),
   currency: z.string(),
   usageHistory: z.array(usageRecordSchema)
