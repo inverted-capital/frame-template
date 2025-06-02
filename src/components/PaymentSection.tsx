@@ -1,7 +1,7 @@
 import React from 'react'
 import { Wallet, CreditCard, Landmark, ExternalLink, Plus } from 'lucide-react'
 
-import type { PaymentMethod } from '../../types/account'
+import type { PaymentMethod } from '../types/account'
 
 interface PaymentSectionProps {
   paymentMethods?: PaymentMethod[]

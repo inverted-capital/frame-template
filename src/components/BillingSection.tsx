@@ -10,7 +10,7 @@ import {
   RefreshCw
 } from 'lucide-react'
 
-import type { BillingData, UsageRecord } from '../../types/account'
+import type { BillingData, UsageRecord } from '../types/account'
 
 interface BillingPeriod {
   start: string
