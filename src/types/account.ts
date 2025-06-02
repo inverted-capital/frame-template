@@ -3,7 +3,7 @@ import { z } from 'zod'
 export const userProfileSchema = z.object({
   name: z.string(),
   email: z.string().email(),
-  profilePicture: z.string(),
+  profilePicture: z.string()
 })
 
 export type UserProfile = z.infer<typeof userProfileSchema>
@@ -13,7 +13,7 @@ export const paymentMethodSchema = z.object({
   type: z.string(),
   name: z.string(),
   value: z.string(),
-  isConnected: z.boolean(),
+  isConnected: z.boolean()
 })
 
 export type PaymentMethod = z.infer<typeof paymentMethodSchema>
@@ -22,7 +22,7 @@ export const storageUsageSchema = z.object({
   gained: z.number(),
   lost: z.number(),
   gainedCost: z.number(),
-  lostRefund: z.number(),
+  lostRefund: z.number()
 })
 
 export type StorageUsage = z.infer<typeof storageUsageSchema>
@@ -35,7 +35,7 @@ export const usageRecordSchema = z.object({
   bandwidth: z.number(),
   bandwidthCost: z.number(),
   aiTokens: z.number(),
-  aiTokensCost: z.number(),
+  aiTokensCost: z.number()
 })
 
 export type UsageRecord = z.infer<typeof usageRecordSchema>
@@ -43,7 +43,7 @@ export type UsageRecord = z.infer<typeof usageRecordSchema>
 export const billingDataSchema = z.object({
   balance: z.number(),
   currency: z.string(),
-  usageHistory: z.array(usageRecordSchema),
+  usageHistory: z.array(usageRecordSchema)
 })
 
 export type BillingData = z.infer<typeof billingDataSchema>
@@ -51,7 +51,7 @@ export type BillingData = z.infer<typeof billingDataSchema>
 export const accountDataSchema = z.object({
   user: userProfileSchema,
   paymentMethods: z.array(paymentMethodSchema),
-  billing: billingDataSchema,
+  billing: billingDataSchema
 })
 
 export type AccountData = z.infer<typeof accountDataSchema>
