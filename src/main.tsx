@@ -9,7 +9,7 @@ const mockProfile: AccountData = {
   user: {
     name: 'Jane Doe',
     email: 'jane@example.com',
-    profilePicture: 'https://example.com/avatar.jpg',
+    profilePicture: 'https://example.com/avatar.jpg'
   },
   paymentMethods: [
     {
@@ -17,21 +17,21 @@ const mockProfile: AccountData = {
       type: 'ethereum',
       name: 'Ethereum Wallet',
       value: '0x123...abc',
-      isConnected: true,
-    },
+      isConnected: true
+    }
   ],
   billing: {
     balance: 25,
     currency: 'USD',
-    usageHistory: [],
-  },
+    usageHistory: []
+  }
 }
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ArtifactFrame
       placeholder={<App skeleton />}
-      {...(import.meta.env.DEV ? { mockFiles: { 'profile.json': mockProfile } } : {})}
+      mockFiles={{ 'profile.json': mockProfile }}
     >
       <ArtifactSyncer>
         <App />
