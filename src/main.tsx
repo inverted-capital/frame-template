@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ArtifactFrame, ArtifactSyncer } from '@artifact/client/react'
+import { HOST_SCOPE } from '@artifact/client/api'
 import App from './App.tsx'
 import type { AccountData } from './types/account'
 import './index.css'
@@ -32,6 +33,9 @@ createRoot(document.getElementById('root')!).render(
     <ArtifactFrame
       placeholder={<App skeleton />}
       mockFiles={{ 'profile.json': mockProfile }}
+      frameProps={{
+        target: { did: HOST_SCOPE.did, repo: 'mock', branch: 'main' }
+      }}
     >
       <ArtifactSyncer>
         <App />
