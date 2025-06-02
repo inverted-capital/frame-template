@@ -11,6 +11,7 @@ import DeleteAccountModal from './components/modals/DeleteAccountModal'
 import AddPaymentModal from './components/modals/AddPaymentModal'
 import TopUpModal from './components/modals/TopUpModal'
 import useAccountData from './hooks/useAccountData'
+import useAccountSaver from './hooks/useAccountSaver'
 
 // Icons
 import { User } from 'lucide-react'
@@ -28,6 +29,7 @@ interface AccountViewProps {
 
 const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
   const { data, loading, error } = useAccountData()
+  const saveAccount = useAccountSaver()
   const [userProfile, setUserProfile] = useState<UserProfile>({
     name: '',
     email: '',
@@ -74,6 +76,14 @@ const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
 
   const dismissDeleteConfirm = () => {
     setShowDeleteConfirm(false)
+  }
+
+  const saveCurrentData = async (updatedProfile: UserProfile) => {
+    await saveAccount({
+      user: updatedProfile,
+      paymentMethods,
+      billing: billingData
+    })
   }
 
   const togglePaymentConnection = (id: string) => {
@@ -208,6 +218,7 @@ const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
       <ProfileSection
         userProfile={userProfile}
         setUserProfile={setUserProfile}
+        saveProfile={saveCurrentData}
         skeleton={isSkeleton}
       />
 

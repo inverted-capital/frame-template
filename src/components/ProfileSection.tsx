@@ -6,12 +6,14 @@ import type { UserProfile } from '../types/account'
 interface ProfileProps {
   userProfile?: UserProfile
   setUserProfile?: React.Dispatch<React.SetStateAction<UserProfile>>
+  saveProfile?: (profile: UserProfile) => void | Promise<void>
   skeleton?: boolean
 }
 
 const ProfileSection: React.FC<ProfileProps> = ({
   userProfile,
   setUserProfile,
+  saveProfile,
   skeleton
 }) => {
   const [editingName, setEditingName] = useState(false)
@@ -42,12 +44,14 @@ const ProfileSection: React.FC<ProfileProps> = ({
     setEditingName(true)
   }
 
-  const saveName = () => {
+  const saveName = async () => {
     if (tempName.trim()) {
-      setUserProfile!({
+      const updated = {
         ...userProfile!,
         name: tempName
-      })
+      }
+      setUserProfile!(updated)
+      await saveProfile?.(updated)
     }
     setEditingName(false)
   }
