@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { User, Camera, Edit, CheckCircle, X } from 'lucide-react'
 
-import type { UserProfile } from '../../types/account'
+import type { UserProfile } from '../types/account'
 
 interface ProfileProps {
   userProfile?: UserProfile

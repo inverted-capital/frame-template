@@ -6,11 +6,11 @@ import {
   PaymentSection,
   BillingSection,
   SecuritySection
-} from '../components/account'
-import DeleteAccountModal from '../components/account/modals/DeleteAccountModal'
-import AddPaymentModal from '../components/account/modals/AddPaymentModal'
-import TopUpModal from '../components/account/modals/TopUpModal'
-import useAccountData from '../hooks/useAccountData'
+} from './components'
+import DeleteAccountModal from './components/modals/DeleteAccountModal'
+import AddPaymentModal from './components/modals/AddPaymentModal'
+import TopUpModal from './components/modals/TopUpModal'
+import useAccountData from './hooks/useAccountData'
 
 // Icons
 import { User } from 'lucide-react'
@@ -20,7 +20,7 @@ import type {
   PaymentMethod,
   BillingData,
   UsageRecord
-} from '../types/account'
+} from './types/account'
 
 interface AccountViewProps {
   skeleton?: boolean

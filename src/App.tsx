@@ -1,4 +1,4 @@
-import AccountView from './views/AccountView'
+import AccountView from './AccountView'
 
 interface AppProps {
   skeleton?: boolean
