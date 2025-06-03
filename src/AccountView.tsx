@@ -5,9 +5,9 @@ import {
   ProfileSection,
   PaymentSection,
   BillingSection,
-  SecuritySection,
-  InitializingModal
+  SecuritySection
 } from './components'
+import InitializingModal from './components/modals/InitializingModal'
 import DeleteAccountModal from './components/modals/DeleteAccountModal'
 import AddPaymentModal from './components/modals/AddPaymentModal'
 import TopUpModal from './components/modals/TopUpModal'
