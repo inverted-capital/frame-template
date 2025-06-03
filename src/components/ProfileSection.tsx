@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
+import { useArtifact } from '@artifact/client/hooks'
 import { User, Camera, Edit, CheckCircle, X } from 'lucide-react'
 
 import type { UserProfile } from '../types/account'
@@ -16,6 +17,9 @@ const ProfileSection: React.FC<ProfileProps> = ({
   saveProfile,
   skeleton
 }) => {
+  const artifact = useArtifact()
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
   const [editingName, setEditingName] = useState(false)
   const [tempName, setTempName] = useState(userProfile?.name ?? '')
 
@@ -35,8 +39,23 @@ const ProfileSection: React.FC<ProfileProps> = ({
   }
 
   const handleProfilePictureChange = () => {
-    // In a real app, this would open a file picker
-    alert('This would open a file picker to select a new profile picture')
+    fileInputRef.current?.click()
+  }
+
+  const onFileSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    if (file.type !== 'image/jpeg') {
+      alert('Please upload a JPEG image')
+      return
+    }
+
+    const buf = await file.arrayBuffer()
+    artifact.files.write.binary('profile.jpg', new Uint8Array(buf))
+
+    const updated = { ...userProfile!, profilePicture: 'profile.jpg' }
+    setUserProfile!(updated)
+    await saveProfile?.(updated)
   }
 
   const startEditingName = () => {
@@ -77,6 +96,13 @@ const ProfileSection: React.FC<ProfileProps> = ({
               <User size={40} className="text-gray-400" />
             )}
           </div>
+          <input
+            ref={fileInputRef}
+            onChange={onFileSelected}
+            type="file"
+            accept="image/jpeg"
+            className="hidden"
+          />
           <button
             onClick={handleProfilePictureChange}
             className="absolute bottom-0 right-0 bg-blue-500 text-white p-1.5 rounded-full hover:bg-blue-600 transition-colors"
