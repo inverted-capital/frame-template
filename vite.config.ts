@@ -23,5 +23,5 @@ export default defineConfig({
   base: './',
   server: {
     https: useMkcert
-  }
+  } as unknown as import('vite').ServerOptions
 })

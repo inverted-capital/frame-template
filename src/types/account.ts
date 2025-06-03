@@ -25,7 +25,7 @@ const storageUsageSchema = z.object({
   lostRefund: z.number()
 })
 
-type StorageUsage = z.infer<typeof storageUsageSchema>
+export type StorageUsage = z.infer<typeof storageUsageSchema>
 
 const usageRecordSchema = z.object({
   period: z.string(),
