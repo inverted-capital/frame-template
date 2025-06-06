@@ -1,6 +1,6 @@
-import { useExists, useJson, useTypedFile } from '@artifact/client/hooks'
-import { accountDataSchema } from '../types/account'
-import { useMemo } from 'react'
+import { useExists, useTypedFile } from '@artifact/client/hooks'
+import { accountDataSchema, type AccountData } from '../types/account.ts'
+import { useEffect, useMemo, useState } from 'react'
 import equals from 'fast-deep-equal'
 
 const useAccountData = () => {

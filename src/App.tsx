@@ -1,4 +1,4 @@
-import AccountView from './AccountView'
+import AccountView from './AccountView.tsx'
 
 interface AppProps {
   skeleton?: boolean
