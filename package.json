@@ -17,13 +17,13 @@
     "knip": "knip --production --fix --allow-remove-files --format --exports"
   },
   "dependencies": {
-    "@artifact/client": "npm:@jsr/artifact__client@^0.0.101",
+    "@artifact/client": "npm:@jsr/artifact__client@^0.0.102",
     "@open-iframe-resizer/core": "^1.6.0",
     "@tailwindcss/vite": "^4.1.8",
     "lucide-react": "^0.513.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "zod": "^3.25.55",
+    "zod": "^3.25.56",
     "zustand": "^5.0.5"
   },
   "devDependencies": {

@@ -33,7 +33,7 @@ createRoot(document.getElementById('root')!).render(
     <ArtifactFrame
       placeholder={<App skeleton />}
       mockFiles={{ 'profile.json': mockProfile }}
-      frameProps={{
+      mockFrameProps={{
         target: { did: HOST_SCOPE.did, repo: 'mock', branch: 'main' }
       }}
     >
