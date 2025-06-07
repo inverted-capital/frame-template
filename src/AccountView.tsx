@@ -9,7 +9,6 @@ import {
 } from './components/index.ts'
 import InitializingModal from './components/modals/InitializingModal.tsx'
 import DeleteAccountModal from './components/modals/DeleteAccountModal.tsx'
-import AddPaymentModal from './components/modals/AddPaymentModal.tsx'
 import TopUpModal from './components/modals/TopUpModal.tsx'
 import useAccountData from './hooks/useAccountData.ts'
 import useAccountSaver from './hooks/useAccountSaver.ts'
@@ -49,9 +48,6 @@ const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
   })
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([])
-  const [showAddPaymentModal, setShowAddPaymentModal] = useState(false)
-  const [newPaymentType, setNewPaymentType] = useState('ethereum')
-  const [newPaymentValue, setNewPaymentValue] = useState('')
 
   // Billing related state
   const [billingData, setBillingData] = useState<BillingData>({
@@ -101,50 +97,6 @@ const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
       paymentMethods,
       billing: billingData
     })
-  }
-
-  const togglePaymentConnection = (id: string) => {
-    setPaymentMethods((methods) =>
-      methods.map((method) =>
-        method.id === id
-          ? { ...method, isConnected: !method.isConnected }
-          : method
-      )
-    )
-  }
-
-  const handleAddPayment = () => {
-    if (!newPaymentValue.trim()) return
-
-    const newPayment = {
-      id: `${newPaymentType}${Date.now()}`,
-      type: newPaymentType,
-      name:
-        newPaymentType === 'ethereum'
-          ? 'Ethereum Wallet'
-          : newPaymentType === 'wise'
-            ? 'Wise Account'
-            : 'Bank Account',
-      value: newPaymentValue,
-      isConnected: true
-    }
-
-    setPaymentMethods([...paymentMethods, newPayment])
-    setNewPaymentValue('')
-    setShowAddPaymentModal(false)
-  }
-
-  const navigateToWalletNapp = () => {
-    // Select home repository
-    // selectHomeRepository()
-    // Navigate to the napps view
-    // setCurrentView('napps')
-    // // Create a navigation marker
-    // navigateTo({
-    //   title: 'Wallet Manager',
-    //   icon: 'Package',
-    //   view: 'napps'
-    // })
   }
 
   const handleTopUp = () => {
@@ -245,9 +197,7 @@ const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
 
       <PaymentSection
         paymentMethods={paymentMethods}
-        togglePaymentConnection={togglePaymentConnection}
-        setShowAddPaymentModal={setShowAddPaymentModal}
-        navigateToWalletNapp={navigateToWalletNapp}
+        setPaymentMethods={setPaymentMethods}
         skeleton={isSkeleton}
       />
 
@@ -275,16 +225,6 @@ const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
           <DeleteAccountModal
             showDeleteConfirm={showDeleteConfirm}
             dismissDeleteConfirm={dismissDeleteConfirm}
-          />
-
-          <AddPaymentModal
-            showAddPaymentModal={showAddPaymentModal}
-            setShowAddPaymentModal={setShowAddPaymentModal}
-            newPaymentType={newPaymentType}
-            setNewPaymentType={setNewPaymentType}
-            newPaymentValue={newPaymentValue}
-            setNewPaymentValue={setNewPaymentValue}
-            handleAddPayment={handleAddPayment}
           />
 
           <TopUpModal
