@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import mkcert from 'vite-plugin-mkcert'
 
@@ -10,8 +11,12 @@ const useMkcert =
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: useMkcert ? [react(), mkcert()] : [react()],
-  optimizeDeps: {},
+  plugins: useMkcert
+    ? [react(), tailwindcss(), mkcert()]
+    : [react(), tailwindcss()],
+  optimizeDeps: {
+    exclude: ['lucide-react']
+  },
   base: './',
   server: {
     https: useMkcert
