@@ -3,6 +3,7 @@ import { useArtifact } from '@artifact/client/hooks'
 import { User, Camera, Edit, CheckCircle, X } from 'lucide-react'
 
 import type { UserProfile } from '../types/account.ts'
+import useFileUrl from '../hooks/useFileUrl.ts'
 
 interface ProfileProps {
   userProfile?: UserProfile
@@ -19,6 +20,7 @@ const ProfileSection: React.FC<ProfileProps> = ({
 }) => {
   const artifact = useArtifact()
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const pictureUrl = useFileUrl(userProfile?.profilePicture)
 
   const [editingName, setEditingName] = useState(false)
   const [tempName, setTempName] = useState(userProfile?.name ?? '')
@@ -86,9 +88,9 @@ const ProfileSection: React.FC<ProfileProps> = ({
       <div className="flex items-center space-x-6">
         <div className="relative">
           <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-gray-300">
-            {userProfile!.profilePicture ? (
+            {pictureUrl ? (
               <img
-                src={userProfile!.profilePicture}
+                src={pictureUrl}
                 alt="Profile"
                 className="w-full h-full object-cover"
               />

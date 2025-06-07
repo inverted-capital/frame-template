@@ -10,7 +10,7 @@ const mockProfile: AccountData = {
   user: {
     name: 'Jane Doe',
     email: 'jane@example.com',
-    profilePicture: 'https://example.com/avatar.jpg'
+    profilePicture: 'https://i.pravatar.cc/300'
   },
   paymentMethods: [
     {
