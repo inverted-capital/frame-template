@@ -6,11 +6,13 @@ import equals from 'fast-deep-equal'
 const useAccountData = () => {
   const exists = useExists('profile.json')
   const typedData = useTypedFile('profile.json', accountDataSchema)
-  const [data, setData] = useState<AccountData>(typedData)
+  const [data, setData] = useState<AccountData>()
 
   useEffect(() => {
     if (equals(data, typedData)) return
-    setData(typedData)
+    if (typedData) {
+      setData(typedData)
+    }
   }, [typedData, data])
 
   const loading = useMemo(
