@@ -200,7 +200,11 @@ const AccountView: React.FC<AccountViewProps> = ({ skeleton }) => {
   const getPeriodData = () => {
     const index =
       selectedPeriod === 'current' ? 0 : selectedPeriod === 'previous' ? 1 : 2
-    return billingData.usageHistory[index] || billingData.usageHistory[0]
+    return (
+      billingData?.usageHistory?.[index] ??
+      billingData?.usageHistory?.[0] ??
+      emptyUsage
+    )
   }
 
   const periodData = getPeriodData()
