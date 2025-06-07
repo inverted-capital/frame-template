@@ -6,13 +6,13 @@ import {
   PaymentSection,
   BillingSection,
   SecuritySection
-} from './components'
-import InitializingModal from './components/modals/InitializingModal'
-import DeleteAccountModal from './components/modals/DeleteAccountModal'
-import AddPaymentModal from './components/modals/AddPaymentModal'
-import TopUpModal from './components/modals/TopUpModal'
-import useAccountData from './hooks/useAccountData'
-import useAccountSaver from './hooks/useAccountSaver'
+} from './components/index.ts'
+import InitializingModal from './components/modals/InitializingModal.tsx'
+import DeleteAccountModal from './components/modals/DeleteAccountModal.tsx'
+import AddPaymentModal from './components/modals/AddPaymentModal.tsx'
+import TopUpModal from './components/modals/TopUpModal.tsx'
+import useAccountData from './hooks/useAccountData.ts'
+import useAccountSaver from './hooks/useAccountSaver.ts'
 
 // Icons
 import { User } from 'lucide-react'
@@ -22,7 +22,7 @@ import type {
   PaymentMethod,
   BillingData,
   UsageRecord
-} from './types/account'
+} from './types/account.ts'
 
 const emptyUsage: UsageRecord = {
   period: '',

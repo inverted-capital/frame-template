@@ -1,4 +1,4 @@
-export { default as ProfileSection } from './ProfileSection'
-export { default as PaymentSection } from './PaymentSection'
-export { default as BillingSection } from './BillingSection'
-export { default as SecuritySection } from './SecuritySection'
+export { default as ProfileSection } from './ProfileSection.tsx'
+export { default as PaymentSection } from './PaymentSection.tsx'
+export { default as BillingSection } from './BillingSection.tsx'
+export { default as SecuritySection } from './SecuritySection.tsx'

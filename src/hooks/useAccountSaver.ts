@@ -1,5 +1,5 @@
 import { useArtifact } from '@artifact/client/hooks'
-import type { AccountData } from '../types/account'
+import type { AccountData } from '../types/account.ts'
 
 const useAccountSaver = () => {
   const artifact = useArtifact()
