@@ -1,7 +1,7 @@
 import React from 'react'
 import { X, Plus } from 'lucide-react'
 
-import type { BillingData, PaymentMethod } from '../../types/account'
+import type { BillingData, PaymentMethod } from '../../types/account.ts'
 
 interface TopUpModalProps {
   showTopUpModal: boolean

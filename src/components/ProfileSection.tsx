@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { useArtifact } from '@artifact/client/hooks'
 import { User, Camera, Edit, CheckCircle, X } from 'lucide-react'
 
-import type { UserProfile } from '../types/account'
+import type { UserProfile } from '../types/account.ts'
 
 interface ProfileProps {
   userProfile?: UserProfile

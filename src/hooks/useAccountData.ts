@@ -10,7 +10,7 @@ const useAccountData = () => {
 
   useEffect(() => {
     if (equals(data, typedData)) return
-      setData(typedData)
+    setData(typedData)
   }, [typedData, data])
 
   const loading = useMemo(
