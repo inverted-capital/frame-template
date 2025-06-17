@@ -27,7 +27,7 @@ export default function App() {
   if (loading) return <p>Loading...</p>
 
   return (
-    <div>
+    <div className="p-6">
       <input
         value={name}
         onChange={(e) => setName(e.target.value)}
